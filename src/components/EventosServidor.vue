@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <div class="line" :class="{'line-off': !enable, 'line-on': enable, hover: hover && !enable }"></div>
-      <div class="box-server">
+    <div class="box-server">
       <div class="server" 
         @mouseover="this.setHover" 
         @mouseout="this.outHover" 
         :class="{ select: enable}" 
         @click="$emit('click', $event)">
-        <img src="../assets/dicord-icon.svg">
+        <h1>A</h1>
       </div>
     </div>
   </div>
@@ -16,20 +16,20 @@
 <script>
 
 export default {
-  name: 'App',
+  name: 'EventosServidor',
   props: {
     enable: {
       type: Boolean,
       default: false
     }
   },
-  components: {
-  },
+
   data() {
     return {
       hover: false
     }
   },
+
   methods: {
     setHover() {
       if(!this.enable) this.hover = true
@@ -44,9 +44,9 @@ export default {
 
 <style scoped>
 
-  .server img {
-    position: relative;
-    width: 27px;
+  @font-face {
+      font-family: Gg sans;
+      src:url("/fonts/gg sans Regular.ttf");
   }
 
   .server {
@@ -57,28 +57,23 @@ export default {
     border-radius: 100%;
     position: relative;
     cursor: pointer;
-    color: white;
+    color: #23A559;
     justify-content: center;
     align-items: center;
-    font-family: "gg";
+    font-family: "Gg sans";
     font-size: 10px;
     transition: .4s;
   }
 
   .select, .server:hover{
-    background-color: #5865F2;
+    background-color: #23A559;
+    color: aliceblue;
     border-radius: 15px;
     transition: .4s;
   }
 
   .server:active {
     animation: select .4s;
-  }
-
-  .box-server {
-    display: flex;
-    margin: 0;
-    height: 50px;
   }
 
   .box-server {
@@ -121,6 +116,7 @@ export default {
     align-items: center;
   }
 
+  
   @keyframes select 
   {
     0% {

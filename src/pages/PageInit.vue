@@ -5,6 +5,8 @@
     <li v-for="item in this.items" :key="item.id">
       <Server :id="item.id" v-bind:enable="item.status" @click="setSelect(item.id)"/>
     </li>
+    <hr/>
+    <EventosServidor/>
   </div>
 </template>
 
@@ -12,6 +14,7 @@
 
 import Server from "@/components/Server.vue"
 import Direct from "@/components/Direct.vue"
+import EventosServidor from "@/components/EventosServidor"
 
 export default {
   name: 'PageInit',
@@ -36,7 +39,8 @@ export default {
 
   components: {
     Server,
-    Direct    
+    Direct,
+    EventosServidor    
   },
 
   methods: {
