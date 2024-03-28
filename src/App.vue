@@ -18,6 +18,7 @@ export default {
 <style>
  * {
   margin: 0;
+  overflow: hidden;
  }
 
 </style>
