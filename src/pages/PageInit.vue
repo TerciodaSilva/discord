@@ -1,11 +1,17 @@
 <template>
   <div class="menu-server">
-    <Direct :id="this.directItems.id" v-bind:enable="this.directItems.status" @click="setDirect()"/>
+    <Server 
+      :id="this.directItems.id" 
+      :enable="this.directItems.status"
+      :color="this.directItems.color"
+      image="img/assets/dicord-icon.svg"
+      @click="setDirect()"/>
     <hr/>
     <li v-for="item in this.items" :key="item.id">
-      <Server :id="item.id" v-bind:enable="item.status" @click="setSelect(item.id)"/>
+      <Server :id="item.id" :enable="item.status" @click="setSelect(item.id)" :color="item.color" />
     </li>
     <hr/>
+    <Server :id="10" :enable="s" @click="setSelect(item.id)" title="B"/>
     <EventosServidor/>
   </div>
 </template>
@@ -13,7 +19,6 @@
 <script>
 
 import Server from "@/components/Server.vue"
-import Direct from "@/components/Direct.vue"
 import EventosServidor from "@/components/EventosServidor"
 
 export default {
@@ -22,16 +27,19 @@ export default {
     return {
       directItems: {
         id: 0,
-        status: true
+        status: true,
+        color: '#5865F2'
       },
       items: [
         { 
           id: 1,
-          status: false 
+          status: false,
+          color: '' 
         },
         { 
           id: 2,
-          status: false 
+          status: false,
+          color: '' 
         }
       ]
     }
@@ -39,16 +47,17 @@ export default {
 
   components: {
     Server,
-    Direct,
     EventosServidor    
   },
 
   methods: {
     disable(variable) {
       variable.status = false;
+      variable.color = '';
     },
     enable(variable) {
       variable.status = true
+      variable.color = '#5865F2';
     },
     setDirect() {
       this.items.forEach((item) => { this.disable(item) })

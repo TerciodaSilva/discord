@@ -1,0 +1,11 @@
+services:
+  vue:
+    image: node:latest
+    restart: always
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: 
+      "bash -c 'npm install vue && npm i && npm run serve'"
+    ports:
+      - 8080:8080

@@ -2,12 +2,17 @@
   <div class="container">
     <div class="line" :class="{'line-off': !enable, 'line-on': enable, hover: hover && !enable }"></div>
     <div class="box-server">
-      <div class="server" 
-        @mouseover="this.setHover" 
-        @mouseout="this.outHover" 
-        :class="{ select: enable}" 
-        @click="$emit('click', $event)">
-        <h1>A</h1>
+      <div 
+        class="server" 
+        @mouseover="this.setHover" @mouseout="this.outHover" @click="$emit('click', $event)" 
+        :class="{ select: enable}" :style="{ backgroundColor: color }">
+      
+        <div v-if="image == ''">
+          <h1>{{ title }}</h1>
+        </div>
+        <div v-if="image != ''">
+          <img :src="image">
+        </div>
       </div>
     </div>
   </div>
@@ -21,7 +26,19 @@ export default {
     enable: {
       type: Boolean,
       default: false
-    }
+    },
+    title: {
+      type: String,
+      default: 'A'
+    },
+    image: {
+      type: String,
+      default: ''
+    },
+    color: {
+      type: String,
+      default: '',
+    },
   },
 
   data() {
@@ -49,6 +66,11 @@ export default {
       src:url("/fonts/gg sans Regular.ttf");
   }
 
+  .server img {
+    position: relative;
+    width: 27px;
+  }
+
   .server {
     display: flex;
     background-color: hsl(223 calc( 1 * 6.7%) 20.6% / 1);
@@ -66,7 +88,6 @@ export default {
   }
 
   .select, .server:hover{
-    background-color: #5865F2;
     border-radius: 15px;
     transition: .4s;
   }
